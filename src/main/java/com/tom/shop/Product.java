@@ -13,6 +13,7 @@ public class Product {
     String name;
     int price;
     Category category;
+    float discount = 1.0f;
 
     public Product() {
         super();
@@ -26,6 +27,7 @@ public class Product {
 
     public Product(int id, Category category, String name, int price) {
         this.id = id;
+        this.category = category;
         this.name = name;
         this.price = price;
     }
@@ -51,6 +53,9 @@ public class Product {
                         tokens[2],
                         Integer.parseInt(tokens[3])
                 );
+                if (tokens.length > 4) {
+                    produc.discount = Float.parseFloat(tokens[4]);
+                }
                 products.add(produc);
                 line = br.readLine();
             }
@@ -62,8 +67,21 @@ public class Product {
         return products;
     }
 
+    @Override
+    public String toString() {
+        return id + "\t" + name + "\t" + getPrice();
+    }
+
+    private int getPrice() {
+        return isSales() ? (int) (discount * price) : price;
+    }
+
+    private boolean isSales() {
+        return (discount < 1.0f) ? true : false;
+    }
 
     public void publish() {
 
     }
+
 }

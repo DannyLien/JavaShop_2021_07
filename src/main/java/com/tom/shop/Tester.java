@@ -14,7 +14,9 @@ public class Tester {
 
         List<Product> products = Product.getDummyFromFile();
         for (Product product : products) {
-            System.out.println(product.name + "*");
+//            System.out.println(product.name + "*");
+            // add discount
+            System.out.println(product);
         }
 
 //        Product toothbrush = new Product(1, "牙刷", 150);
