@@ -14,7 +14,9 @@ public class Tester {
 
         List<Product> products = Product.getDummyFromFile();
         for (Product product : products) {
-            System.out.println(product.name + "*");
+//            System.out.println(product.name + "*");
+            // SalesProduct()
+            System.out.println(product);
         }
 
 //        Product toothbrush = new Product(1, "牙刷", 150);
@@ -24,10 +26,9 @@ public class Tester {
         Product mouse = new Product(1, Category.CATEGORY_COMPUTER, "滑鼠", 99);
         mouse.publish();
 
-        OrderItem item = new OrderItem(mouse, 3);
-        System.out.println("item.total = " + (item.qty * item.price));
+//        OrderItem item = new OrderItem(mouse, 3);
+//        System.out.println("item.total = " + (item.qty * item.price));
 
     }
-
 
 }

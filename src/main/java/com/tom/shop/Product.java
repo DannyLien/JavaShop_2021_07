@@ -13,6 +13,7 @@ public class Product {
     String name;
     int price;
     Category category;
+    float discount = 1.0f;
 
     public Product() {
         super();
@@ -45,12 +46,19 @@ public class Product {
             while (line != null) {
                 System.out.println(line);
                 String[] tokens = line.split(",");
-                Product produc = new Product(
-                        Integer.parseInt(tokens[0]),
-                        categories.get(Integer.parseInt(tokens[1]) - 1),
-                        tokens[2],
-                        Integer.parseInt(tokens[3])
-                );
+                //
+                int id = Integer.parseInt(tokens[0]);
+                Category category = categories.get(Integer.parseInt(tokens[1]) - 1);
+                String name = tokens[2];
+                int price = Integer.parseInt(tokens[3]);
+                //
+                Product produc;
+                if (tokens.length > 4) {
+                    float discount = Float.parseFloat(tokens[4]);
+                    produc = new SalesProduct(id, category, name, price, discount);
+                } else {
+                    produc = new Product(id, category, name, price);
+                }
                 products.add(produc);
                 line = br.readLine();
             }
@@ -62,8 +70,16 @@ public class Product {
         return products;
     }
 
+    @Override
+    public String toString() {
+        return id + "\t" + name + "\t" + getPrice();
+    }
+
+    public int getPrice() {
+        return price;
+    }
 
     public void publish() {
-
     }
+
 }
