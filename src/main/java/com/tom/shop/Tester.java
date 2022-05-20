@@ -15,7 +15,10 @@ public class Tester {
         List<Product> products = Product.getDummyFromFile();
         for (Product product : products) {
 //            System.out.println(product.name + "*");
-            // SalesProduct()
+            // instanceof
+            if(product instanceof SalesProduct){
+                System.out.print("*");
+            }
             System.out.println(product);
         }
 
