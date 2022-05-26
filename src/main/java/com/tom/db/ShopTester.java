@@ -23,6 +23,9 @@ public class ShopTester {
                 int ver = resultSet.getInt("version");
                 System.out.println(id + "\t" + name + "\t" + ver);
             }
+            resultSet.close();
+            stmt.close();
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
