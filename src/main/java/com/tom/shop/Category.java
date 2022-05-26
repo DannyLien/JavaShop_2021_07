@@ -1,6 +1,7 @@
 package com.tom.shop;
 
 import java.lang.invoke.CallSite;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,4 +25,27 @@ public class Category {
         return categories;
     }
 
+    public static List<Category> getCategoryFromDB() {
+        List<Category> categories = new ArrayList<>();
+        try {
+            //ReadCategoryFromDB
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/shop?user=jack&password=abc333");
+            Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery("select * from category");
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                categories.add(new Category(id, name));
+            }
+            resultSet.close();
+            stmt.close();
+            connection.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categories;
+    }
 }

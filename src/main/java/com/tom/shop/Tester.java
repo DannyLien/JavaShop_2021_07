@@ -7,7 +7,8 @@ public class Tester {
 
     public static void main(String[] args) {
 
-        List<Category> categories = Category.getDummyCategory();
+//        List<Category> categories = Category.getDummyCategory();
+        List<Category> categories = Category.getCategoryFromDB();
         for (Category category : categories) {
             System.out.println(category.name);
         }
